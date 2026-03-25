@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-02-21 16:10:41.344790",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "box_type",
+  "box_uri",
+  "column_break_oflo",
+  "warehouse_url",
+  "warehouse_api_key",
+  "warehouse_secret_key",
+  "emqx_tab",
+  "emqx_hostname"
+ ],
+ "fields": [
+  {
+   "fieldname": "box_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Box Type",
+   "options": "Service Box\nClient Box",
+   "reqd": 1
+  },
+  {
+   "default": "https://warehouse.cloudgcs.com",
+   "fieldname": "warehouse_url",
+   "fieldtype": "Data",
+   "label": "Warehouse Url"
+  },
+  {
+   "fieldname": "warehouse_api_key",
+   "fieldtype": "Data",
+   "label": "Warehouse Api Key"
+  },
+  {
+   "fieldname": "warehouse_secret_key",
+   "fieldtype": "Password",
+   "label": "Warehouse Secret Key"
+  },
+  {
+   "description": "e.g. http://localhost:8005 or http://34.250.113.81:8080",
+   "fieldname": "box_uri",
+   "fieldtype": "Data",
+   "label": "Box Uri"
+  },
+  {
+   "fieldname": "column_break_oflo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emqx_tab",
+   "fieldtype": "Tab Break",
+   "label": "EMQX"
+  },
+  {
+   "default": "emqx",
+   "description": "e.g. localhost or 54.246.37.191",
+   "fieldname": "emqx_hostname",
+   "fieldtype": "Data",
+   "label": "Hostname"
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-05-20 05:30:32.275428",
+ "modified_by": "Administrator",
+ "module": "Box Configuration",
+ "name": "Box Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "read_only": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

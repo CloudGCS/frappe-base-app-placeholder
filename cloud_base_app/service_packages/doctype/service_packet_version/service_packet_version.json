@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "autoname": "format:{service_packet}_v{major}.{minor}",
+ "creation": "2023-12-26 00:18:39.675086",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "service_packet",
+  "major",
+  "minor",
+  "column_break_ichd",
+  "extensions",
+  "version"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_packet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Service Packet",
+   "options": "Service Packet",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "major",
+   "fieldtype": "Int",
+   "label": "Major",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "minor",
+   "fieldtype": "Int",
+   "label": "Minor",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ichd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "extensions",
+   "fieldtype": "Table MultiSelect",
+   "label": "Extensions",
+   "options": "Service Packet Extension",
+   "reqd": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Version",
+   "options": "f\"v{doc.major}.{doc.minor}\"",
+   "read_only": 1,
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "group": "Installed Packet",
+   "link_doctype": "Service Packet",
+   "link_fieldname": "release_version"
+  }
+ ],
+ "modified": "2024-04-10 00:54:40.232924",
+ "modified_by": "Administrator",
+ "module": "Service Packages",
+ "name": "Service Packet Version",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

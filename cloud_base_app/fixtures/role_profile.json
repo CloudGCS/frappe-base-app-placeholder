@@ -1,0 +1,53 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-06-11 11:48:45.776286",
+  "name": "Flight Manager",
+  "role_profile": "Flight Manager",
+  "roles": [
+   {
+    "parent": "Flight Manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "MC Admin"
+   },
+   {
+    "parent": "Flight Manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Pilot Role"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-06-17 00:00:22.323998",
+  "name": "MC Manager",
+  "role_profile": "MC Manager",
+  "roles": [
+   {
+    "parent": "MC Manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "MC Admin"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2024-03-27 02:59:08.954677",
+  "name": "Pilotage",
+  "role_profile": "Pilotage",
+  "roles": [
+   {
+    "parent": "Pilotage",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Pilot Role"
+   }
+  ]
+ }
+]
