@@ -1,3 +1,2 @@
-Cloud Base App
 Box Configuration
 Service Packages
