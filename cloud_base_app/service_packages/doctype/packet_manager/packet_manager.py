@@ -176,75 +176,6 @@ def create_packet_version(service_packet_doc, service_extensions: list, packet_d
   packet_version.save()
   return packet_version
 
-
-def update_aircraft_plugins(packet_dto):
-  # Fetch all aircrafts
-  all_aircrafts = frappe.get_all("Aircraft")
-  plugins = packet_dto.get_plugin_exensions()
-
-  # Iterate over all aircrafts
-  for aircraft in all_aircrafts:
-    aircraft_doc = frappe.get_doc("Aircraft", aircraft.name)
-
-    new_ps_plugins = []
-    staying_ps_plugins = []
-    for ps_plugin in aircraft_doc.ps_plugins:
-      aircraft_plugin_name = "_".join(ps_plugin.plugin.split("_")[:-1])
-      # get plugin from plugins that matches the plugin name
-      incoming_plugin = next((p for p in plugins if p.get_plugin_name() == aircraft_plugin_name), None)
-      if not incoming_plugin:
-        staying_ps_plugins.append(ps_plugin)
-        continue
-
-      plugin_version = ps_plugin.plugin.split("_")[-1]
-      major, minor = plugin_version.replace('v', '').split('.')
-      if incoming_plugin.major != major or incoming_plugin.minor != minor:
-        new_ps_plugins.append(incoming_plugin)
-
-    new_mc_plugins = []
-    staying_mc_plugins = []
-    for mc_plugin in aircraft_doc.mc_plugins:
-      aircraft_plugin_name = "_".join(mc_plugin.plugin.split("_")[:-1])
-      # get plugin from plugins that matches the plugin name
-      incoming_plugin = next((p for p in plugins if p.get_plugin_name() == aircraft_plugin_name), None)
-      if not incoming_plugin:
-        staying_mc_plugins.append(mc_plugin)
-        continue
-
-      plugin_version = mc_plugin.plugin.split("_")[-1]
-      major, minor = plugin_version.replace('v', '').split('.')
-      if incoming_plugin.major != major or incoming_plugin.minor != minor:
-        new_mc_plugins.append(incoming_plugin)
-
-    if new_ps_plugins:
-      aircraft_doc.set("ps_plugins", [])
-      for new_plugin in new_ps_plugins:
-        ps_plugin_doc = frappe.new_doc("Aircraft Plugin")
-        ps_plugin_doc.parent = aircraft_doc.name
-        ps_plugin_doc.parenttype = "Aircraft"
-        ps_plugin_doc.parentfield = "ps_plugins"
-        ps_plugin_doc.plugin = new_plugin.construct_name()
-        ps_plugin_doc.insert()
-        staying_ps_plugins.append(ps_plugin_doc)
-
-      aircraft_doc.set("ps_plugins", staying_ps_plugins)
-
-    if new_mc_plugins:
-      aircraft_doc.set("mc_plugins", [])
-      for new_plugin in new_mc_plugins:
-        mc_plugin_doc = frappe.new_doc("Aircraft Plugin")
-        mc_plugin_doc.parent = aircraft_doc.name
-        mc_plugin_doc.parenttype = "Aircraft"
-        mc_plugin_doc.parentfield = "mc_plugins"
-        mc_plugin_doc.plugin = new_plugin.construct_name()
-        mc_plugin_doc.insert()
-        staying_mc_plugins.append(mc_plugin_doc)
-
-      aircraft_doc.set("mc_plugins", staying_mc_plugins)
-
-    if new_ps_plugins or new_mc_plugins:
-      aircraft_doc.save()
-
 @frappe.whitelist()
 def install_packet(packet_name, release_version, action):
   try:
@@ -263,17 +194,8 @@ def install_packet(packet_name, release_version, action):
     service_packet_doc.save()
     # todo: you may revisit this part
     # if action == "UPDATE":
-    update_aircraft_plugins(packet_dto)
 
     jobs = get_jobs()
-
-    update_server_box_info_enqueue_method = "cloud_base_app.cloud_base_app.controllers.box_info_controller.create_and_update_server_box_info"
-    if not jobs or update_server_box_info_enqueue_method not in jobs[frappe.local.site]:
-      frappe.enqueue(
-          update_server_box_info_enqueue_method,
-          queue="default",
-          enqueue_after_commit=True
-      )
 
     any_app_update = update_web_applications(packet_dto)
     # todo: a better response to UI
