@@ -9,8 +9,10 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/cloud_base_app/css/cloud_base_app.css"
-# app_include_js = "/assets/cloud_base_app/js/cloud_base_app.js"
+app_include_css = ["/assets/cloud_base_app/css/cloud_base_app.css"]
+app_include_js = ["/assets/cloud_base_app/js/custom_about.js"]
+after_install = "cloud_base_app.setup.after_install"
+after_migrate = "cloud_base_app.setup.after_migrate"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/cloud_base_app/css/cloud_base_app.css"

@@ -1,0 +1,25 @@
+.quick-list-widget-box {
+  border: 1px solid var(--border-color);
+}
+
+.shortcut-widget-box {
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
+
+.links-widget-box {
+  border: 1px solid var(--border-color);
+}
+
+.ce-header {
+  background-color: #E0E0F0;
+  padding: 5px;
+}
+
+.layout-side-section {
+  background-color: #E0E0F0;
+}
+
+.page-head {
+  background-color: #A0A0C0;
+}
