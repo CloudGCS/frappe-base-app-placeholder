@@ -11,7 +11,6 @@ import frappe
 from frappe.model.document import Document
 
 from cloud_base_app.box_configuration.doctype.box_settings.box_settings import check_packets_update, get_extension_file_from_warehouse, get_packet_from_warehouse
-from cloud_base_app.service_packages.mock_warehouse import mock_api, mock_install_api
 from cloud_base_app.service_packages.models import ExtensionDto, PacketDto, ServicePacketDto
 from frappe.utils.background_jobs import get_jobs
 
@@ -32,7 +31,6 @@ class PacketManager(Document):
 
 
 def fetch_packets_from_warehouse(packets):
-  # available_packets = mock_api()
   # available_packets = json.loads(available_packets)
   available_packets = check_packets_update()
   if available_packets is None:
@@ -181,7 +179,6 @@ def install_packet(packet_name, release_version, action):
   try:
     # print('This is new version')
     # fetch the packet
-    # packet_response = mock_install_api(packet_name, release_version)
     # packet_dto = ServicePacketDto(**json.loads(packet_response))
     packet_from_warehouse = get_packet_from_warehouse(release_version)
     packet_dto = ServicePacketDto(**packet_from_warehouse)
