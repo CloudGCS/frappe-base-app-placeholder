@@ -1,0 +1,164 @@
+{
+ "actions": [
+  {
+   "action": "cloud_base_app.service_packages.doctype.service_extension.service_extension.upload_file",
+   "action_type": "Server Action",
+   "hidden": 1,
+   "label": "Upload File"
+  }
+ ],
+ "allow_import": 1,
+ "autoname": "format:{service_provider}_{extension_type}_{extension_code}_v{major}.{minor}",
+ "creation": "2023-12-25 23:41:04.174091",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "extension_code",
+  "title",
+  "service_provider",
+  "column_break_fwqw",
+  "extension_type",
+  "major",
+  "minor",
+  "version",
+  "section_break_bavq",
+  "description",
+  "plugin_info",
+  "library_name",
+  "is_background_plugin",
+  "file",
+  "config"
+ ],
+ "fields": [
+  {
+   "description": "Display Name",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "library_name",
+   "fieldtype": "Data",
+   "label": "Library Name"
+  },
+  {
+   "fieldname": "service_provider",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Service Provider",
+   "not_nullable": 1,
+   "options": "Service Provider",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extension_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Extension Type",
+   "options": "Service Extension Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fwqw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "major",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Major",
+   "non_negative": 1,
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "minor",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Minor",
+   "non_negative": 1,
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "File"
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Version",
+   "options": "f\"v{doc.major}.{doc.minor}\"",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "plugin_info",
+   "fieldtype": "Tab Break",
+   "label": "Plugin Info"
+  },
+  {
+   "description": "Short code as identifier for your extension",
+   "fieldname": "extension_code",
+   "fieldtype": "Data",
+   "label": "Extension Code",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "config",
+   "fieldtype": "JSON",
+   "label": "Configuration"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_background_plugin",
+   "fieldtype": "Check",
+   "label": "Background Plugin"
+  },
+  {
+   "fieldname": "section_break_bavq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-21 17:38:35.202481",
+ "modified_by": "Administrator",
+ "module": "Service Packages",
+ "name": "Service Extension",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
